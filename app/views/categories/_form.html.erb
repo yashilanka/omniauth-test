@@ -1,0 +1,16 @@
+<%= render '_shared/error', obj: @category %>
+
+
+
+<%= form_for @category do |t| %>
+    <p>
+      <span><%= t.label :name %></span><br>
+      <%= t.text_field :name, autofocus: true %>
+    </p>
+    <p>
+      <%= t.submit %>
+    </p>
+<% end %>
+
+
+<%= link_to 'Back', :back %>

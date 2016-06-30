@@ -1,0 +1,16 @@
+<h1>All Categories</h1>
+
+<% if @categories.any? %>
+    <ul class="category_page">
+      <% @categories.each do |category| %>
+          <li><%= link_to category.name, category_path(category), class: 'category' %>
+            <span>[ <%= link_to 'Edit', edit_category_path(category) %>
+              | <%= link_to 'Delete', category_path(category), method: :delete, data: {confirm: "Are you sure?"} %>
+              ]</span></li>
+      <% end %>
+    </ul>
+    <%= link_to 'Create New Category', new_category_path %>
+<% else %>
+    <p>No Categories here</p>
+    <%= link_to 'Create New Category', new_category_path %>
+<% end %>

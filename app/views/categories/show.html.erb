@@ -1,0 +1,25 @@
+<h1>Post related to - <%= @category.name %></h1>
+
+<% if @category.posts.any? %>
+    <table>
+      <thead>
+      <tr>
+        <th width="150px">Title</th>
+        <th>Content</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @category.posts.each do |post| %>
+          <tr>
+            <td><%= post.title %></td>
+            <td><%= post.description %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <hr>
+    <%= link_to 'Back', :back %>
+<% else %>
+    <p>No Post found here</p>
+    <%= link_to 'Create New Post', new_post_path %> | <%= link_to 'Back', :back %>
+<% end %>

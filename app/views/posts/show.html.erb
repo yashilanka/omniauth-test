@@ -1,0 +1,10 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.description %></p>
+<% if @post.categories.any? %>
+    <ul>
+      <% @post.categories.each do |category| %>
+          <li><%= link_to category.name, category_path(category), class: 'category' %> </li>
+      <% end %></ul>
+<% end %>
+
+<%= link_to 'Back to Posts', posts_path %>

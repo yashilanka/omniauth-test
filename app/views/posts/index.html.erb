@@ -1,0 +1,47 @@
+<h1><%= link_to 'All Posts', root_path %></h1>
+<% if @posts.blank? %>
+    <h1 align="center">Nothing in here !!</h1>
+    <%= link_to 'Create New Post', new_post_path, style: 'text-align:center; margin:0px auto; display:inherit' %>
+<% else %>
+    <table>
+      <thead>
+      <tr>
+        <th width="200px">Title</th>
+        <th>Description</th>
+        <th width="150px"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.title %></td>
+            <td>
+              <% if post.categories.any? %>
+                  <table>
+                    <tr>
+                      <td><%= truncate(post.description, length: 150) %></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <small><strong>Categories :</strong></small>
+                        <% post.categories.each do |c| %>
+                            <small><em><%= link_to c.name, category_path(c), class: 'category' %></em></small>
+                            |
+                        <% end %></td>
+                    </tr>
+                  </table>
+              <% else %>
+                  <%= truncate(post.description, length: 150) %>
+              <% end %>
+            </td>
+            <td><%= link_to 'Show', post_path(post) %> | <%= link_to 'edit', edit_post_path(post) %>
+              | <%= link_to 'Delete', post_path(post), method: :delete, data: {confirm: "Are you sure?"} %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+<% end %>
+
+	
+	

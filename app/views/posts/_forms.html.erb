@@ -1,0 +1,26 @@
+
+
+<%= render '_shared/error', obj: @post %>
+
+
+<%= form_for @post do |t| %>
+    <p>
+      <span><%= t.label :title %></span><br>
+      <%= t.text_field :title, autofocus: true %>
+    </p>
+    <p>
+      <span><%= t.label :description %></span><br>
+      <%= t.text_area :description, rows: 10, cols: 150, width: '100%' %>
+    </p>
+    <p>
+      <strong><%= t.label 'Category' %></strong> :
+      <%= t.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
+          <%= b.check_box %><%= b.label %>
+      <% end %>
+    <p>
+      <%= t.submit %>
+    </p>
+<% end %>
+
+
+<%= link_to 'Back to Posts', posts_path %>
